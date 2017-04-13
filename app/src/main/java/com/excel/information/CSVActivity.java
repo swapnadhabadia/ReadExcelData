@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.excel.information.database.ExcelDataBaseHandler;
@@ -30,12 +31,15 @@ public class CSVActivity extends AppCompatActivity implements AdapterView.OnItem
     
      @BindView(R.id.infoList)
      ListView infoListView;
+    @BindView(R.id.backButton)
+    Button backButton;
     private ExcelDataBaseHandler controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
+
         ButterKnife.bind(this);
 
 
@@ -89,7 +93,12 @@ public class CSVActivity extends AppCompatActivity implements AdapterView.OnItem
         infoListView.setAdapter(listImagesBaseAdapter);
         infoListView.setOnItemClickListener(this);
 
-
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override
