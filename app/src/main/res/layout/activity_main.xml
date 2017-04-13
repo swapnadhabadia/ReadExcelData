@@ -5,15 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     >
 
 
-    <ListView
+    <!--<ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/infoList">
 
-    </ListView>
+    </ListView>-->
 
 
+    <Button
+        android:id="@+id/csvFileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert From CSV" />
+
+    <Button
+        android:id="@+id/xlsFileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert From XLS" />
 </LinearLayout>
