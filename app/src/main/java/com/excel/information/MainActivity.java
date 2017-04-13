@@ -1,11 +1,13 @@
 package com.excel.information;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.excel.information.database.ExcelDataBaseHandler;
@@ -22,12 +24,16 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private ExcelDataBaseHandler controller;
     private ArrayList<HashMap<String, String>> listMap;
-    @BindView(R.id.infoList)
-    ListView infoListView;
+
+    @BindView(R.id.csvFileButton)
+    Button csv;
+    @BindView(R.id.xlsFileButton)
+    Button xls;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,64 +41,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        try {
+        csv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            InputStreamReader is = new InputStreamReader(getAssets()
-                    .open("Ecommerce.csv"));
-            controller = new ExcelDataBaseHandler(getApplicationContext());
-
-            SQLiteDatabase db = controller.getWritableDatabase();
-
-           db.execSQL("DELETE FROM " + ExcelDbSchema.ListOfTable.NAME+" ; ");
-
-            BufferedReader buffer = new BufferedReader(is);
-
-            ContentValues contentValues = new ContentValues();
-
-            String line = "";
-
-            db.beginTransaction();
-
-            while ((line = buffer.readLine()) != null) {
-
-                String[] str = line.split(",", 3);
-
-                String product = str[0].toString();
-
-                String quantity = str[1].toString();
-
-                String type = str[2].toString();
-
-                contentValues.put(ExcelDbSchema.ListOfTable.Columns.PRODUCT, product);
-
-                contentValues.put(ExcelDbSchema.ListOfTable.Columns.QUANTITY, quantity);
-
-                contentValues.put(ExcelDbSchema.ListOfTable.Columns.TYPE, type);
-
-                db.insert(ExcelDbSchema.ListOfTable.NAME, null, contentValues);
-
+                Intent in = new Intent(MainActivity.this, CSVActivity.class);
+                startActivity(in);
             }
+        });
 
-            db.setTransactionSuccessful();
-            db.endTransaction();
+        xls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(MainActivity.this, XLSActivity.class);
+                startActivity(in);
+            }
+        });
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-       //Toast.makeText(this,listMap.toString(),Toast.LENGTH_LONG).show();
-
-        ListDataAdapter listImagesBaseAdapter = new ListDataAdapter(MainActivity.this);
-        infoListView.setAdapter(listImagesBaseAdapter);
-        infoListView.setOnItemClickListener(this);
-
-
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="7">
+    android:weightSum="9">
 
 
     <LinearLayout
@@ -93,5 +93,26 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_5dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
 
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/price"
+            style="@style/bodyTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:paddingBottom="@dimen/dimen_5dp"
+            android:text="@string/price"
+android:visibility="gone"
+            >
+
+        </android.support.v7.widget.AppCompatTextView>
+
+
+    </LinearLayout>
 </LinearLayout>

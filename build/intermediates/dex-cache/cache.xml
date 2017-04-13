@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/SappiKaran/AndroidStudioProjects/ReadExcelData/app/libs/poi-3.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="581aca996554d760c02b281ac1f9efb785de54be">
+        <dex dex="/Users/SappiKaran/AndroidStudioProjects/ReadExcelData/app/build/intermediates/pre-dexed/debug/poi-3.7_b9e05a95d1a194faacf066778a268bad1e8a0c1e.jar" />
+    </item>
+
+</items>
